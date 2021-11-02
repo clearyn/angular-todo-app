@@ -9,13 +9,12 @@ function requireHTTPS(req, res, next) {
     next();
 }
 
-//Aplikasi Express-nya
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080
 
 app
-.use(requireHTTPS)// kalau dijalankan lokan comment line ini
+.use(requireHTTPS)
 .use(express.static('./dist/TodoApp'))
 
 .get('/*', (req, res) => res.sendFile('index.html', {root: './dist/TodoApp'}))
