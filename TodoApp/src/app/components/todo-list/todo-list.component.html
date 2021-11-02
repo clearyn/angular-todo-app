@@ -1,0 +1,33 @@
+<h1>Todo List</h1>
+<app-add-todo-form (newTodoEvent)="addTodo($event)"></app-add-todo-form><br>
+
+<ol *ngFor="let todo of todos let i = index;" class="list-group">
+    <li class="list-group-item d-flex justify-content-beetween align-items-start ">
+        <div class="me-auto ms-3">
+            <div class="content {{(todo.completed ? 'done' : '')}}">
+                {{ i + 1 }}. {{ todo.content }}
+            </div>
+        </div>
+        <button class="btn btn-warning btn-sm completed ms-1" (click)="toggleDone(i)">
+            <i class="bi bi-check-circle"></i>
+        </button>
+        <button class="btn btn-primary btn-sm ms-1" (click)="editTodo(i)">
+            <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger btn-sm ms-1" (click)="deleteTodo(i)">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </li>
+</ol>
+<br>
+
+<h1>Finished Things</h1>
+<ol *ngFor="let todo of todos let i = index;" class="list-group">
+    <li class="list-group-item d-flex justify-content-beetween align-items-start" *ngIf="todo.completed">
+        <div class="ms-3 me-auto" >
+            <div class="content">
+                {{ i + 1 }}. {{ todo.content }}
+            </div>
+        </div>
+    </li>
+</ol>

@@ -1,0 +1,35 @@
+<form [formGroup]="form.todoForm" (ngSubmit) ="onSubmit()">
+    <div class="input-group mb-3">
+        <input 
+            (change)="switchSubmittedState(false)"
+            type="text"
+            name="inputTodo"
+            placeholder="Enter Todo.."
+            class="form-control"
+            id="todoNewItems"
+            name="todoNewItems"
+            formControlName="todoNewItems"
+        />
+        <button 
+            type="submit"
+            class="btn btn-success"
+        >Add new todo</button>
+    </div>
+    <div class="invalid-errors" style="color: red;" *ngIf="form.isSubmitted && form.errors?.todoNewItems">
+        <ul>
+            <li *ngIf="form.errors?.todoNewItems?.required">Todo new item cannot be empty!</li>
+            <li *ngIf="form.errors?.todoNewItems?.minlength">
+                Todo new item is required with minimum length {{ form.errors?.todoNewItems?.minlength?.requiredLength }} character.
+            </li>
+            <li *ngIf="form.errors?.todoNewItems?.pattern">
+                Nama item todo tidak boleh menggunakan symbol
+            </li>
+          </ul>
+      </div>
+    <!-- <div *ngIf="todoNewItems && form.todoForm.todoNewItems?.errors?.minlength && form.isSubmitted == true" style="color: red;">
+        Todo new item is required with minimum length {{todoNewItems?.errors?.minlength?.requiredLength}}!
+    </div>
+    <div *ngIf="todoNewItems && form.todoNewItems?.errors?.required && form.isSubmitted == true" style="color: red;">
+        Todo new item cannot be empty!
+    </div> -->
+</form>
